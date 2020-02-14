@@ -1,11 +1,17 @@
 package com.projetoAvancado.apiRestaurante.models;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 
 @Entity
 public class Cliente implements Serializable {
@@ -19,6 +25,9 @@ public class Cliente implements Serializable {
 	private String email;
 	private String senha;
 	
+	
+	@OneToMany
+	private List<ItemPedido> itens;
 	
 	
 	public Cliente() {}
@@ -64,8 +73,15 @@ public class Cliente implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
+	public List<ItemPedido> getItens() {
+		return itens;
+	}
 
+	public void setItens(List<ItemPedido> itens) {
+		this.itens = itens;
 	
 	
+	}
 	
 }

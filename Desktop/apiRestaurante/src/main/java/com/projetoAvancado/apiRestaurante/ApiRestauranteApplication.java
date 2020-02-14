@@ -10,8 +10,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.projetoAvancado.apiRestaurante.models.Cardapio;
 import com.projetoAvancado.apiRestaurante.models.Cliente;
+
 import com.projetoAvancado.apiRestaurante.repository.CardapioRepository;
 import com.projetoAvancado.apiRestaurante.repository.ClienteRepository;
+
 
 
 
@@ -22,6 +24,7 @@ public class ApiRestauranteApplication implements CommandLineRunner{
 	CardapioRepository cardapioRepository;
 	@Autowired
 	ClienteRepository clienteRepository;
+	@Autowired
 	
 	
 	public static void main(String[] args) {
@@ -34,16 +37,19 @@ public class ApiRestauranteApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		
 		
-		
-		Cardapio card1 = new Cardapio(null, "macarrão", "Macarrão com molho de Tomate" , 18.00);
-		Cardapio  card2 = new Cardapio(null, "Arroz", "Arroz refogado com frango", 19.00);
-		Cardapio card3 = new Cardapio(null, "Hambúrguer", "Hamburguer e salada", 3.00);
-		
 		Cliente cli1 = new Cliente(null, "Maria", "Maria@gmail.com", "sdfsdfsdf" );
 		Cliente cli2 = new Cliente(null, "João", "joao@gmail.com", "s6798468sdf9");
 		Cliente cli3 = new Cliente(null, "Lays", "lays@gmail.com", "s6sdfsdfwe2duiy");
 		
+	   
+	    		
+		Cardapio card1 = new Cardapio(null, "macarrão", "Macarrão com molho de Tomate" , 18.00);
+		Cardapio  card2 = new Cardapio(null, "Arroz", "Arroz refogado com frango", 19.00);
+		Cardapio card3 = new Cardapio(null, "Hambúrguer", "Hamburguer e salada", 3.00);
+		
 	
+		
+		
 		clienteRepository.saveAll( Arrays.asList(cli1, cli2,cli3));
 		cardapioRepository.saveAll(Arrays.asList(card1, card2, card3));
 		
