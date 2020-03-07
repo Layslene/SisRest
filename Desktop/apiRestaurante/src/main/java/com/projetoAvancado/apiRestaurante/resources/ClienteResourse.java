@@ -18,8 +18,10 @@ import com.projetoAvancado.apiRestaurante.DTO.ExibirClienteDTO;
 import com.projetoAvancado.apiRestaurante.Services.ClienteService;
 import com.projetoAvancado.apiRestaurante.models.Cliente;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
-@RequestMapping("/api/clientes")
+@RequestMapping(value="/api/clientes")
 
 public class ClienteResourse {
 	
@@ -27,16 +29,19 @@ public class ClienteResourse {
 	private ClienteService clienteService;
 	
 	@PostMapping
+	@ApiOperation(value="Salva um cliente no banco")
 	public void addCliente(@RequestBody Cliente cliente) {
 		clienteService.save(cliente);
 	}
 	
 	@PutMapping(value= "/{id}")
+	@ApiOperation(value="Altera as informações de um cliente")
 	public void attProprietario(@PathVariable Long id, @RequestBody Cliente cliente) {
 		clienteService.attCliente(id, cliente);
 	}
 	
 	@GetMapping(value = "/{id}")
+	@ApiOperation(value="Retorna um cliente especifico")
 	public ExibirClienteDTO getById(@PathVariable("id") Long id){
 		Optional<Cliente> obj = clienteService.getById(id);
 		ExibirClienteDTO objDTO = new ExibirClienteDTO(obj.get());
@@ -44,6 +49,7 @@ public class ClienteResourse {
 	}
 	
 	@GetMapping
+	@ApiOperation(value="Retorna todos os clientes")
 	public List<ExibirClienteDTO> getProdutos() {
 		List<Cliente> lista = clienteService.findAll();
 		List<ExibirClienteDTO> listaDTO = lista.stream().map(obj -> new ExibirClienteDTO(obj))
@@ -52,6 +58,7 @@ public class ClienteResourse {
 	}
 	
 	@DeleteMapping("/{id}")
+	@ApiOperation(value="Deleta um cliente específico")
 	public void delete(@PathVariable("id") Long id) {
 		clienteService.delete(id);
 	}

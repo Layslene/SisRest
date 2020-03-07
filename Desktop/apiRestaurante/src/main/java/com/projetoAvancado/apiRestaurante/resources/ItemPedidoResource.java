@@ -17,20 +17,24 @@ import com.projetoAvancado.apiRestaurante.DTO.NovoItemPedidoDTO;
 import com.projetoAvancado.apiRestaurante.Services.ItemPedidoService;
 import com.projetoAvancado.apiRestaurante.models.ItemPedido;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
-@RequestMapping("/api/itens")
+@RequestMapping(value="/api/itens")
 public class ItemPedidoResource {
 	
 	@Autowired
 	ItemPedidoService itemService;
 
 	@PostMapping
+	@ApiOperation(value="Adiciona um novo item de pedido")
 	public void addItem(@RequestBody NovoItemPedidoDTO itemDTO) {
 		ItemPedido item = itemService.fromDTO(itemDTO);
 		itemService.save(item);
 	}
 	
 	@GetMapping
+	@ApiOperation(value="Retorna os Pedidos")
 	public List<NovoItemPedidoDTO> getCardapio() {
 		List<ItemPedido> lista = itemService.findAll();
 		List<NovoItemPedidoDTO> listaDTO = lista.stream().map(obj -> new NovoItemPedidoDTO(obj))
@@ -47,6 +51,7 @@ public class ItemPedidoResource {
 	}
 	
 	@DeleteMapping("/{id}")
+	@ApiOperation(value="Deleta um item de pedido específico")
 	public void delete(@PathVariable("id") Long id) {
 		itemService.delete(id);
 	}
