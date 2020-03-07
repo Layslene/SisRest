@@ -59,5 +59,16 @@ public class CardapioService {
 		return card;
 	
 	}
+	
+	public void attCardapio(Long id, Cardapio obj) {
+		Optional<Cardapio> objOptional = getById(id);
+		if (objOptional.isPresent()) {
+			Cardapio objDb = objOptional.get();
+			objDb.setValor(obj.getValor());
+			objDb.setDescricao(obj.getDescricao());
+			objDb.setTitulo(obj.getTitulo());
+			cardapioRepository.save(objDb);
+		} 
+	}
 
 }

@@ -59,11 +59,12 @@ public class CardapioResource {
 	
 	@PutMapping(value="/{id}")
 	@ApiOperation(value="Atualiza um prato do cardapio especifico")
-	public void updateCardapio(@RequestBody EditarCardapioDTO objDTO, @PathVariable Long id) {
+	public void attCardapio(@RequestBody EditarCardapioDTO objDTO, @PathVariable Long id) {
 		Cardapio cardapio = cardapioService.fromDTO(objDTO);
 		cardapio.setId(id);
 		cardapioService.attCardapio(id, cardapio);
 	}
+	
 	
 	@DeleteMapping("/{id}")
 	@ApiOperation(value="Delete um prato do cardapio especifico")
